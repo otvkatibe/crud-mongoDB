@@ -2,10 +2,11 @@
   "name": "crud_mongodb",
   "version": "1.0.0",
   "description": "CRUD de usuários com MongoDB",
-  "main": "./src/app.js",
+  "main": "api/app.js",
   "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "start": "node api/app.js",
+    "start:database": "docker-compose up -d",
+    "stop:database": "docker-compose down"
   },
   "dependencies": {
     "cors": "^2.8.5",

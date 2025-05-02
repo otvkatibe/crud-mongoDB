@@ -1,6 +1,6 @@
-const User = require('../models/User');
+import User from '../models/User';
 
-exports.createUser = async (req, res) => {
+export async function createUser(req, res) {
   try {
     const user = new User(req.body);
     await user.save();
@@ -8,18 +8,18 @@ exports.createUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-};
+}
 
-exports.getAllUsers = async (req, res) => {
+export async function getAllUsers(req, res) {
   try {
     const users = await User.find();
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}
 
-exports.getUserById = async (req, res) => {
+export async function getUserById(req, res) {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
@@ -27,9 +27,9 @@ exports.getUserById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}
 
-exports.updateUser = async (req, res) => {
+export async function updateUser(req, res) {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -40,9 +40,9 @@ exports.updateUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-};
+}
 
-exports.patchUser = async (req, res) => {
+export async function patchUser(req, res) {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -53,9 +53,9 @@ exports.patchUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-};
+}
 
-exports.deleteUser = async (req, res) => {
+export async function deleteUser(req, res) {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
@@ -63,4 +63,4 @@ exports.deleteUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+}
